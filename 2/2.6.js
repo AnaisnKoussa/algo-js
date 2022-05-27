@@ -21,4 +21,9 @@ switch (userNumber) {
       break;
     case 7:
       day = "Saturday";
+      break;
+    default : 
+      console.log("Sorry !");
   }
+
+  console.log(day);
