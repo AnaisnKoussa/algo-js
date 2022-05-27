@@ -1,5 +1,6 @@
+const readlineSync = require("readline-sync");
+
 function askTvSerie() {
-    const readlineSync = require("readline-sync");
     let nameOfFavoriteTvSerie = readlineSync.question('Can you give me the name of your favorite Tv Serie ?');
     let productionYearOfFavoriteTvSerie = readlineSync.question(`Can you give me the production's year of your favorite Tv Serie ?`);
     
@@ -22,7 +23,7 @@ function askTvSerie() {
             wantAdd = readlineSync.question("Do you want to add another favorite member (Yes or No) ? ");
         }
         
-        if (wantAdd == "Yes") {
+        if (wantAdd.toLowerCase() == "yes") {
             let castMember = readlineSync.question("What is the cast favorite member ?")
             if (castMember.length > 0) {
                 namesArray.push(castMember);
@@ -36,15 +37,35 @@ function askTvSerie() {
     }
 
     return {
-        "tvSeries": [ 
-            {
                 "name" : nameOfFavoriteTvSerie,
                 "productionYear" : productionYearOfFavoriteTvSerie,
                 "namesOfTheCastMembers" : namesArray,
-            }
-        ]
+            };
+}
+
+function randomizeCast(data) {
+    // Récupérer le tableau du casting
+    let array = data.namesOfTheCastMembers;
+    // Inverse l'ordre du tableau
+    let reverse = array.sort(() => Math.random() - 0.5);
+    // Retourne le tableau
+    return reverse;
+}
+
+let series = [];
+let keepSeries = true;
+
+while(keepSeries) {
+    let co = readlineSync.question('Do you want to add a serie ?');
+    switch(co.toLowerCase()) {
+        case 'yes': 
+            series.push(askTvSerie()); 
+            break;
+        case 'no': 
+            keepSeries = false;
     }
 }
 
-let data = askTvSerie();
-console.log(JSON.stringify(data));
+for (let serie of series) {
+    console.log(`${serie.name} - ${serie.productionYear} : ${randomizeCast(serie)}`);
+}
