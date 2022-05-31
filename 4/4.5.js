@@ -8,3 +8,4 @@ function calcDistance (A,B) {
     let distanceAB = (Math.sqrt(distanceSquare));
     return(distanceAB);
 }
+//Math.hypot();
