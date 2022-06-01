@@ -1,6 +1,6 @@
 const readlineSync = require("readline-sync");
 function divisor() {
-    let userNumber = readlineSync.question('Give a positive integer please');//6
+    let userNumber = readlineSync.question('Give a positive integer please');
         for (i = 1; i < userNumber; i ++){
             let division = userNumber/i;
             if ((division != 1) && (division == Math.trunc(division) && (division != userNumber))) {
