@@ -5,7 +5,7 @@ function divisor() {
             let division = userNumber/i;
             if ((division != 1) && (division == Math.trunc(division) && (division != userNumber))) {
                 console.log(i);
-            }
+            } 
         }  
     }
 console.log(divisor());
